@@ -6,8 +6,6 @@ DogLovers is an app designed to help users remember different dog breeds. It pro
 
 ## Features
 
-// TODO: give an quick gif story of the whole application
-
 You can play a memory game less than 5 minutes each day to help you recognize every puppy you meet.
 
 - `DogCards`: Prompt users to choose the right breed from a selection of dog images.
@@ -30,17 +28,16 @@ there will be three main parts of this app, each quote represent a key module in
 
 #### Controller
 
-As the features described, each key feature with a controller
+As the features described, each key feature with a controller.
+Prototype as bellow:
+![Prototype](/Prototype.png)
 
 - `DogCardsController`: Play the memory game in this controller.
   - Use `CardView` to present the interactive game card.
   - Interact with `Remember` and `Dog` module to update/get information and fill the view.
-![DogCardsController](/IMG_4108.PNG){:height="200px" width="200px"}
-
 - `DogGroundController`: Display the progress info and start the game from here.
   - Interact with `Feedback` and `Remember` module to present the status.
   - Display a start button to start the memory game.
-![DogGroundController](/IMG_4108.PNG){:height="200px" width="200px"}
 
 #### View
 
