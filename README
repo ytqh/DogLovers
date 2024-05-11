@@ -34,10 +34,11 @@ Prototype as bellow:
 
 - `DogCardsController`: Play the memory game in this controller.
   - Use `CardView` to present the interactive game card.
-  - Interact with `Remember` and `Dog` module to update/get information and fill the view.
+  - Interact with `Memory` and `Dog` module to update/get information and fill the view.
 - `DogGroundController`: Display the progress info and start the game from here.
-  - Interact with `Feedback` and `Remember` module to present the status.
-  - Display a start button to start the memory game.
+  - Interact with `Game` and `Memory` module to present the status.
+  - Display some `Dog` information with `Memory` status.
+  - Display a start button to start the memory game
 
 #### View
 
@@ -53,7 +54,7 @@ Prototype as bellow:
   - fetch and cache all data from [API](https://dog.ceo/dog-api/documentation)
   - provide query ability: query all breeds, query images by breed/subbreed
 
-##### Remember
+##### Memory
 
 - Role: save and maintain the memory prograss of all `Dog` and provide the `Dog` to remember based on the [forgetting curve theory](https://en.wikipedia.org/wiki/Forgetting_curve)
 - Key Funcationality:
@@ -61,12 +62,12 @@ Prototype as bellow:
   - Update and save memory results(correct/worng, day) on each dog.
   - Provide suggestion dogs to remember based on the [forgetting curve theory](https://en.wikipedia.org/wiki/Forgetting_curve)
 
-##### Feedback
+##### Game
 
-- Role: provide positive game status and encouragement based on the `Remeber` prograss
+- Role: provide positive game status based on the `Remeber` prograss
 - Key Funcationality:
-  - Get game level (iron 0-25%, copper 26-50%, silver 51-75%, gold 76 - 99%, Trophy 100%)
-  - Get encouragement text.
+  - Get game level (iron 0-33%, silver 34-66%, gold 67 - 100%)
+  - Get game progress
 
 ## Future Enhancements
 
