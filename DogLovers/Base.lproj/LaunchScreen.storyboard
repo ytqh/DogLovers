@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="ipad10_5" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,15 +13,60 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dog_LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="dHW-MQ-EYP">
+                                <rect key="frame" x="40" y="60" width="754" height="754"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dHW-MQ-EYP" secondAttribute="height" multiplier="1:1" id="iTm-DV-b3z"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Learn dog breeds quickly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNy-us-AqC">
+                                <rect key="frame" x="321" y="1005" width="192" height="27"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dog Lovers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CsU-2C-ZZN">
+                                <rect key="frame" x="329.5" y="905" width="175" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="94V-f4-rAX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CsU-2C-ZZN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dHW-MQ-EYP" secondAttribute="bottom" constant="60" id="0hN-zm-jif"/>
+                            <constraint firstItem="dHW-MQ-EYP" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" priority="750" constant="-200" id="1XN-sq-ZmJ"/>
+                            <constraint firstItem="CsU-2C-ZZN" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="2cF-jh-KQR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DNy-us-AqC" secondAttribute="trailing" constant="30" id="2vV-z1-JdB"/>
+                            <constraint firstItem="dHW-MQ-EYP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="5to-sw-pUG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DNy-us-AqC" secondAttribute="bottom" constant="80" id="AHf-eq-p2s"/>
+                            <constraint firstItem="dHW-MQ-EYP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Bgv-1p-ue7"/>
+                            <constraint firstItem="DNy-us-AqC" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="E6R-Zr-hKZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CsU-2C-ZZN" secondAttribute="trailing" constant="70" id="OIC-S3-she"/>
+                            <constraint firstItem="DNy-us-AqC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="OTj-pv-ywQ"/>
+                            <constraint firstItem="CsU-2C-ZZN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="70" id="Rcd-mK-dCq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dHW-MQ-EYP" secondAttribute="trailing" constant="40" id="Uue-Ow-6Fq"/>
+                            <constraint firstItem="DNy-us-AqC" firstAttribute="top" secondItem="CsU-2C-ZZN" secondAttribute="bottom" constant="30" id="bzR-dq-3dD"/>
+                            <constraint firstItem="dHW-MQ-EYP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="pAE-Na-UaD"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="49.275362318840585" y="373.36956521739131"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Dog_LaunchScreen" width="236" height="236"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
