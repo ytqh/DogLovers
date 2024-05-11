@@ -24,6 +24,8 @@
 		61FD85892BEF99DF004899BC /* Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD85872BEF99DF004899BC /* Memory.m */; };
 		61FD858C2BEF9AA0004899BC /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD858B2BEF9AA0004899BC /* Game.m */; };
 		61FD858D2BEF9AA0004899BC /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD858B2BEF9AA0004899BC /* Game.m */; };
+		61FD85912BEFAED2004899BC /* DogGroundController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD85902BEFAED2004899BC /* DogGroundController.m */; };
+		61FD85942BEFAEED004899BC /* DogCardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD85932BEFAEED004899BC /* DogCardsController.m */; };
 		DCFB5E751DC48AD3E8518971 /* Pods_DogLoversTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE835648A0E7610144BCAAA1 /* Pods_DogLoversTests.framework */; };
 		DF456DEC62F01D604D7F0AEA /* Pods_DogLovers_DogLoversUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8BD603A74C8EEBA2A75F0DC /* Pods_DogLovers_DogLoversUITests.framework */; };
 /* End PBXBuildFile section */
@@ -72,6 +74,10 @@
 		61FD85872BEF99DF004899BC /* Memory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Memory.m; sourceTree = "<group>"; };
 		61FD858A2BEF9AA0004899BC /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		61FD858B2BEF9AA0004899BC /* Game.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		61FD858F2BEFAED2004899BC /* DogGroundController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DogGroundController.h; sourceTree = "<group>"; };
+		61FD85902BEFAED2004899BC /* DogGroundController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DogGroundController.m; sourceTree = "<group>"; };
+		61FD85922BEFAEED004899BC /* DogCardsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DogCardsController.h; sourceTree = "<group>"; };
+		61FD85932BEFAEED004899BC /* DogCardsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DogCardsController.m; sourceTree = "<group>"; };
 		67FB7D45CE3D508AA7FCD979 /* Pods-DogLovers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogLovers.debug.xcconfig"; path = "Target Support Files/Pods-DogLovers/Pods-DogLovers.debug.xcconfig"; sourceTree = "<group>"; };
 		735A807EAF6AF76A97926644 /* Pods-DogLoversTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogLoversTests.release.xcconfig"; path = "Target Support Files/Pods-DogLoversTests/Pods-DogLoversTests.release.xcconfig"; sourceTree = "<group>"; };
 		77A449A96E89B799461DEAD3 /* Pods-DogLovers-DogLoversUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogLovers-DogLoversUITests.debug.xcconfig"; path = "Target Support Files/Pods-DogLovers-DogLoversUITests/Pods-DogLovers-DogLoversUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +162,7 @@
 		61B53A3A2BEF1F2C0050A387 /* DogLovers */ = {
 			isa = PBXGroup;
 			children = (
+				61FD858E2BEFAEB2004899BC /* Controller */,
 				61FD85812BEF9955004899BC /* Model */,
 				61B53A3B2BEF1F2C0050A387 /* AppDelegate.h */,
 				61B53A3C2BEF1F2C0050A387 /* AppDelegate.m */,
@@ -200,6 +207,17 @@
 				61FD858B2BEF9AA0004899BC /* Game.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		61FD858E2BEFAEB2004899BC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				61FD858F2BEFAED2004899BC /* DogGroundController.h */,
+				61FD85902BEFAED2004899BC /* DogGroundController.m */,
+				61FD85922BEFAEED004899BC /* DogCardsController.h */,
+				61FD85932BEFAEED004899BC /* DogCardsController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,6 +427,8 @@
 				61FD85842BEF999F004899BC /* Dog.m in Sources */,
 				61B53A4E2BEF1F2E0050A387 /* main.m in Sources */,
 				61FD85882BEF99DF004899BC /* Memory.m in Sources */,
+				61FD85942BEFAEED004899BC /* DogCardsController.m in Sources */,
+				61FD85912BEFAED2004899BC /* DogGroundController.m in Sources */,
 				61FD858C2BEF9AA0004899BC /* Game.m in Sources */,
 				61B53A402BEF1F2C0050A387 /* SceneDelegate.m in Sources */,
 			);
