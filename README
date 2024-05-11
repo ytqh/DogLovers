@@ -1,0 +1,79 @@
+# DogLovers
+
+## Description
+
+DogLovers is an app designed to help users remember different dog breeds. It provides users with pictures of dogs and asks them to identify the breed. The app aims to give users a sense of satisfaction when they correctly identify the breed.
+
+## Features
+
+// TODO: give an quick gif story of the whole application
+
+You can play a memory game less than 5 minutes each day to help you recognize every puppy you meet.
+
+- `DogCards`: Prompt users to choose the right breed from a selection of dog images.
+- `DogGround`: Display the overall progress of the memory game.
+
+## Requirement Analysis
+
+### Requirement
+
+A good friend of yours loves dogs, but struggles to remember which breed is which. They have approached you to see if you can build an app that will help them remember. They’d love an app that shows them a picture of a dog and asks them which breed it is- and gives them a warm sense of satisfaction when they get it right.
+
+### Key Parts Analysis
+
+Use MVC structure to structe the application.
+
+there will be three main parts of this app, each quote represent a key module in the application.
+
+- `Remember` the `Dog`: shows them a picture of a dog and asks them which breed it is.
+- `Feedback`: gives them a warm sense of satisfaction when they get it right.
+
+#### Controller
+
+As the features described, each key feature with a controller
+
+- `DogCardsController`: Play the memory game in this controller.
+  - Use `CardView` to present the interactive game card.
+  - Interact with `Remember` and `Dog` module to update/get information and fill the view.
+![DogCardsController](/IMG_4108.PNG){:height="200px" width="200px"}
+
+- `DogGroundController`: Display the progress info and start the game from here.
+  - Interact with `Feedback` and `Remember` module to present the status.
+  - Display a start button to start the memory game.
+![DogGroundController](/IMG_4108.PNG){:height="200px" width="200px"}
+
+#### View
+
+- `CardView`: Subview of CollectionView to display CardCell one by one horizontally.
+  - `CardCell`: one image with four choice button.
+
+#### Model
+
+##### Dog
+
+- Role: provide all the meta information of the dogs. Including breed/subbreed and images.
+- Key Functionality:
+  - fetch and cache all data from [API](https://dog.ceo/dog-api/documentation)
+  - provide query ability: query all breeds, query images by breed/subbreed
+
+##### Remember
+
+- Role: save and maintain the memory prograss of all `Dog` and provide the `Dog` to remember based on the [forgetting curve theory](https://en.wikipedia.org/wiki/Forgetting_curve)
+- Key Funcationality:
+  - Get current overall memory prograss
+  - Update and save memory results(correct/worng, day) on each dog.
+  - Provide suggestion dogs to remember based on the [forgetting curve theory](https://en.wikipedia.org/wiki/Forgetting_curve)
+
+##### Feedback
+
+- Role: provide positive game status and encouragement based on the `Remeber` prograss
+- Key Funcationality:
+  - Get game level (iron 0-25%, copper 26-50%, silver 51-75%, gold 76 - 99%, Trophy 100%)
+  - Get encouragement text.
+
+## Future Enhancements
+
+// TODO: add future enhancement
+
+- add two different types of game: select breed by image and select the right image by breed.
+- add notification to notify the user to play.
