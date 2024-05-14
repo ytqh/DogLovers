@@ -65,7 +65,7 @@
 }
 
 - (NSArray<MemoryCard *> *)todayCards {
-    return [self.memory unfinishedCardsWithCount:self.memory.totalCountToRemember];
+    return [self.memory unfinishedCardsWithCount:self.memory.todayCountToRemember];
 }
 
 @end

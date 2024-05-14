@@ -33,7 +33,9 @@
 
 @end
 
-@interface DogCardView ()
+static NSString *const DogChoiceReuseIdentifier = @"DogCardView";
+
+@interface DogCardView () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIImageView *dogImage;
 @property (weak, nonatomic) IBOutlet UITableView *choiceTableView;
@@ -43,7 +45,7 @@
 @property (nonatomic, weak) id<DogCardViewDataSource> dataSource;
 
 @property (readonly) DogCardData *currentCard;
-@property (readonly) NSUInteger currentIndex;
+@property (nonatomic, assign) NSUInteger currentIndex;
 
 @end
 
@@ -61,13 +63,58 @@
     return self;
 }
 
+- (void)didMoveToSuperview {
+    [super didMoveToSuperview];
+    self.choiceTableView.delegate = self;
+    self.choiceTableView.dataSource = self;
+    [self.choiceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:DogChoiceReuseIdentifier];
+}
+
 - (void)reload {
     // TODO: set data;
     [self.dogImage sd_setImageWithURL:[NSURL URLWithString:self.currentCard.imageURL]];
+    [self.choiceTableView reloadData];
 }
 
 - (DogCardData *)currentCard {
     return [self.dataSource dogCardView:self cardDataAtIndex:self.currentIndex];
+}
+
+- (void)nextCard {
+    self.currentIndex += 1;
+    [self reload];
+}
+
+#pragma mark - UITableViewDelegate & DataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.currentCard.options.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DogChoiceReuseIdentifier forIndexPath:indexPath];
+
+    UIListContentConfiguration *content = cell.defaultContentConfiguration;
+    content.text = [self.currentCard.options[indexPath.row] description];
+    cell.contentConfiguration = content;
+
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return tableView.frame.size.height / self.currentCard.options.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.delegate dogCardView:self didSelectedOption:self.currentCard.options[indexPath.row] atIndex:self.currentIndex withStatus:DogCardSelected];
+}
+
+- (IBAction)forget:(id)sender {
+    [self.delegate dogCardView:self didSelectedOption:nil atIndex:self.currentIndex withStatus:DogCardForget];
 }
 
 @end

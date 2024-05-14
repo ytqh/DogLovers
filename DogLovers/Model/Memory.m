@@ -6,6 +6,7 @@
 //
 
 #import "Memory.h"
+#import <SDWebImage/SDWebImage.h>
 
 @interface MemoryCard ()
 
@@ -61,17 +62,35 @@
 
     // TODO: Mock
     NSMutableArray<MemoryCard *> *cards = [NSMutableArray array];
+
+    NSArray<NSString *> *totalImages = @[
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_1007.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_1007.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_4420.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_4426.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_4434.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_4450.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_4464.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_4467.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_4497.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_4501.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_4511.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_4517.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_4521.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_4583.jpg",
+        @"https://images.dog.ceo/breeds/hound-afghan/n02088094_4586.jpg",
+    ];
+    
     for (int i = 0; i < count; i++) {
         Dog *dog = [[Dog alloc] init];
         DogBreed *breed = [DogBreed new];
         breed.name = [NSString stringWithFormat:@"Dog %d", i + 1];
         breed.subBreed = [NSString stringWithFormat:@"SubDog %d", i + 1];
         dog.breed = breed;
-        dog.imageURLs = @[
-            @"https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg",
-            @"https://images.dog.ceo/breeds/hound-afghan/n02088094_1007.jpg",
-            @"https://images.dog.ceo/breeds/hound-afghan/n02088094_1007.jpg",
-        ];
+
+        NSUInteger randomIndex = arc4random_uniform((uint32_t)totalImages.count);
+        dog.imageURLs = @[ totalImages[randomIndex] ];
 
         MemoryCard *card = [MemoryCard cardWithDog:dog];
         [cards addObject:card];
@@ -84,8 +103,12 @@
     return nil;
 }
 
-- (NSUInteger)todayRememberedCount {
-    return 30;
+- (NSUInteger)todayCountToRemember {
+    return 4;
+}
+
+- (NSUInteger)todayCountRemembered {
+    return 1;
 }
 
 - (NSUInteger)currentCountRemembered {

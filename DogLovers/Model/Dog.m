@@ -16,6 +16,25 @@
     return breed;
 }
 
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    if (![object isKindOfClass:[DogBreed class]]) {
+        return NO;
+    }
+    DogBreed *other = (DogBreed *)object;
+    return [self.name isEqualToString:other.name] && (self.subBreed == nil || [self.subBreed isEqualToString:other.subBreed]);
+}
+
+- (NSString *)description {
+    if (self.subBreed != nil) {
+        return [NSString stringWithFormat:@"%@ %@", self.name, self.subBreed];
+    }
+    
+    return self.name;
+}
+
 @end
 
 @implementation Dog

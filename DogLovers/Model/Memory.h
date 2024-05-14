@@ -35,6 +35,9 @@ typedef NS_ENUM(NSUInteger, MemoryCardStatus) {
 @property (nonatomic, assign, readonly) NSUInteger totalCountToRemember;
 @property (nonatomic, assign, readonly) NSUInteger currentCountRemembered;
 
+@property (nonatomic, assign, readonly) NSUInteger todayCountToRemember;
+@property (nonatomic, assign, readonly) NSUInteger todayCountRemembered;
+
 + (instancetype)sharedMemory;
 
 // update memory status with card and status
@@ -43,9 +46,6 @@ typedef NS_ENUM(NSUInteger, MemoryCardStatus) {
 
 // return random cards with count
 - (NSArray<MemoryCard *> *)unfinishedCardsWithCount:(NSUInteger)count;
-
-// return today remembered count based on pervious memory status
-- (NSUInteger)todayRememberedCount;
 
 // OPT: configure finshed date to memory; currently set to next 30 days after open this application
 //- (void)configureFinishedDate:(NSDate *)date;

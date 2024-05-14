@@ -17,6 +17,8 @@
 @property (copy, nonatomic) NSArray<MemoryCard *> *cards;
 @property (copy, nonatomic) NSArray<DogCardData *> *cardDatas;
 
+@property (readonly) Memory *memory;
+
 @end
 
 @implementation DogCardsController
@@ -27,18 +29,12 @@
     
     self.cardView.delegate = self;
     self.cardView.dataSource = self;
-    
-    [self.cardView reload];
+        
+    [self reload];
 }
 
 - (IBAction)popupController:(id)sender {
-    
-    // TODO: save current status?
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    // TODO: overall save status in case data loss;
 }
 
 - (void)configureCards:(NSArray<MemoryCard *> *)cards {
@@ -54,11 +50,31 @@
 
 #pragma mark - Card Delegate && DataSource
 
-- (void)dogCardView:(nonnull DogCardView *)view didSelectedOption:(nonnull DogBreed *)option atIndex:(NSUInteger)index withStatus:(DogCardSelectStatus)status { 
+- (void)dogCardView:(nonnull DogCardView *)view didSelectedOption:(DogBreed *)option atIndex:(NSUInteger)index withStatus:(DogCardSelectStatus)status {
+        
+    MemoryCard *card = self.cards[index];
+    MemoryCardStatus cardStatus = MemoryCardStatusWrong;
     
-    // TODO: update memory data
+    if (status == DogCardForget) {
+        cardStatus = MemoryCardStatusForget;
+    } else if ([option isEqual:card.correctOption]) {
+        cardStatus = MemoryCardStatusCorrect;
+    }
     
-    // TODO: when finished all cards, dismiss the controller or give an finished view to give warm feedback.
+    NSError *err = [self.memory updateMemoryWithCard:self.cards[index] statue:cardStatus];
+    
+    if (err != nil) {
+        NSLog(@"Card Memory Status Save Wrong: %@", err.debugDescription);
+        return;
+    }
+        
+    if (index >= self.cardDatas.count - 1) {
+        // TODO: show a warm feedback
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [view nextCard];
+        [self reload];
+    }
 }
 
 - (nonnull DogCardData *)dogCardView:(nonnull DogCardView *)view cardDataAtIndex:(NSUInteger)index { 
@@ -71,5 +87,14 @@
 }
 
 #pragma mark - Memory Handle Logic
+
+- (void)reload {
+    [self.progessNaviItem setTitle:[NSString stringWithFormat:@"%lu/%lu", self.memory.todayCountRemembered, self.memory.todayCountToRemember]];
+    [self.cardView reload];
+}
+
+- (Memory *)memory {
+    return [Memory sharedMemory];
+}
 
 @end
