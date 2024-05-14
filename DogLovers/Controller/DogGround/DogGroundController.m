@@ -6,13 +6,18 @@
 //
 
 #import "DogGroundController.h"
+#import "DogCardsController.h"
 
 @interface DogGroundController ()
 
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
-@property (weak, nonatomic) IBOutlet UILabel *progressTitle;
 @property (weak, nonatomic) IBOutlet UILabel *progressNumTitle;
 @property (weak, nonatomic) IBOutlet UITableView *dogsTableView;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+
+@property (readonly) NSArray<MemoryCard *> *todayCards;
+@property (readonly) Memory *memory;
+@property (readonly) CGFloat progress;
 
 @end
 
@@ -25,19 +30,42 @@
     [self setupViews];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UIViewController *nav = segue.destinationViewController;
+    
+    if (![nav isKindOfClass:UINavigationController.class]) {
+        return;
+    }
+    
+    if (![nav.childViewControllers.firstObject isKindOfClass:DogCardsController.class]) {
+        return;
+    }
+    
+    DogCardsController *cardController = nav.childViewControllers.firstObject;
+    [cardController configureCards:self.todayCards];
 }
-*/
 
 // TODO: set up data with DogLovers
 - (void)setupViews {
+    
+    [self.progressView setProgress:self.progress];
+    [self.progressNumTitle setText:[NSString stringWithFormat:@"%lu / %lu", self.memory.currentCountRemembered, self.memory.totalCountToRemember]];
+    [self.playButton setTitle:[NSString stringWithFormat:@"%lu Puppies Today!", self.memory.currentCountRemembered] forState:UIControlStateNormal];
+}
 
+
+#pragma mark - Progress Logic
+
+- (Memory *)memory {
+    return [Memory sharedMemory];
+}
+
+- (CGFloat)progress {
+    return (CGFloat)self.memory.currentCountRemembered / (CGFloat)self.memory.totalCountToRemember;
+}
+
+- (NSArray<MemoryCard *> *)todayCards {
+    return [self.memory unfinishedCardsWithCount:self.memory.totalCountToRemember];
 }
 
 @end

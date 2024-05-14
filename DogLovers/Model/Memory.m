@@ -31,7 +31,6 @@
 
 @property (nonatomic, assign) NSUInteger totalCountToRemember;
 @property (nonatomic, assign) NSUInteger currentCountRemembered;
-@property (nonatomic, strong) NSDate *finishDate;
 
 @end
 
@@ -46,8 +45,27 @@
     return sharedMemory;
 }
 
-- (nonnull NSArray<MemoryCard *> *)randomCardsWithCount:(NSUInteger)count {
-    return nil;
+- (nonnull NSArray<MemoryCard *> *)unfinishedCardsWithCount:(NSUInteger)count {
+
+    // TODO: Mock
+    NSMutableArray<MemoryCard *> *cards = [NSMutableArray array];
+    for (int i = 0; i < count; i++) {
+        Dog *dog = [[Dog alloc] init];
+        DogBreed *breed = [DogBreed new];
+        breed.name = [NSString stringWithFormat:@"Dog %d", i + 1];
+        breed.subBreed = [NSString stringWithFormat:@"SubDog %d", i + 1];
+        dog.breed = breed;
+        dog.imageURLs = @[
+            @"https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg",
+            @"https://images.dog.ceo/breeds/hound-afghan/n02088094_1007.jpg",
+            @"https://images.dog.ceo/breeds/hound-afghan/n02088094_1007.jpg",
+        ];
+
+        MemoryCard *card = [MemoryCard cardWithDog:dog];
+        [cards addObject:card];
+    }
+
+    return [cards copy];
 }
 
 - (nonnull NSError *)updateMemoryWithCard:(nonnull MemoryCard *)card statue:(MemoryCardStatus)status {
@@ -55,11 +73,15 @@
 }
 
 - (NSUInteger)todayRememberedCount {
-    return 0;
+    return 30;
 }
 
-- (void)configureFinishedDate:(nonnull NSDate *)date {
-    self.finishDate = date;
+- (NSUInteger)currentCountRemembered {
+    return 100;
+}
+
+- (NSUInteger)totalCountToRemember {
+    return 400;
 }
 
 @end

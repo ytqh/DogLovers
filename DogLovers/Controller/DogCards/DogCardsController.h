@@ -6,10 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Memory.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DogCardsController : UIViewController
+
+- (void)configureCards:(NSArray<MemoryCard *> *)cards;
 
 @end
 

@@ -8,9 +8,25 @@
 #import "Dog.h"
 
 @implementation DogBreed
+
+- (instancetype)copyWithZone:(nullable NSZone *)zone {
+    DogBreed *breed = [[DogBreed alloc] init];
+    breed.name = self.name;
+    breed.subBreed = self.subBreed;
+    return breed;
+}
+
 @end
 
 @implementation Dog
+
+- (instancetype)copyWithZone:(nullable NSZone *)zone {
+    Dog *dog = [[Dog alloc] init];
+    dog.breed = [self.breed copy];
+    dog.imageURLs = [self.imageURLs copy];
+    return dog;
+}
+
 @end
 
 @interface DogManager ()
