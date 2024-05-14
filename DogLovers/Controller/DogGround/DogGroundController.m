@@ -10,6 +10,8 @@
 
 @interface DogGroundController ()
 
+// TODO: Trophy
+
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *progressNumTitle;
 @property (weak, nonatomic) IBOutlet UITableView *dogsTableView;
@@ -28,6 +30,7 @@
     // Do any additional setup after loading the view.
     
     [self setupViews];
+    [self reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -45,14 +48,20 @@
     [cardController configureCards:self.todayCards];
 }
 
-// TODO: set up data with DogLovers
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self reloadData];
+}
+
 - (void)setupViews {
     
+}
+
+- (void)reloadData {
     [self.progressView setProgress:self.progress];
     [self.progressNumTitle setText:[NSString stringWithFormat:@"%lu / %lu", self.memory.currentCountRemembered, self.memory.totalCountToRemember]];
     [self.playButton setTitle:[NSString stringWithFormat:@"%lu Puppies Today!", self.memory.currentCountRemembered] forState:UIControlStateNormal];
 }
-
 
 #pragma mark - Progress Logic
 

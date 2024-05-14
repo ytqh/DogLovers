@@ -56,6 +56,8 @@
 
 @implementation DogManager
 
+// TODO: Netowrk and Download Logic
+
 + (nonnull instancetype)sharedManager {
     static DogManager *sharedInstance = nil;
     static dispatch_once_t onceToken;

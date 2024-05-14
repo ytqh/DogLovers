@@ -6,6 +6,7 @@
 //
 
 #import "SceneDelegate.h"
+#import "Dog.h"
 
 @interface SceneDelegate ()
 
@@ -33,6 +34,10 @@
 - (void)sceneDidBecomeActive:(UIScene *)scene {
     // Called when the scene has moved from an inactive state to an active state.
     // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+    
+    [[DogManager sharedManager] refreshDogCache:^(NSError * _Nullable error) {
+        NSLog(@"refreshDogCache error: %@", error);
+    }];
 }
 
 

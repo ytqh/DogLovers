@@ -71,7 +71,6 @@ static NSString *const DogChoiceReuseIdentifier = @"DogCardView";
 }
 
 - (void)reload {
-    // TODO: set data;
     [self.dogImage sd_setImageWithURL:[NSURL URLWithString:self.currentCard.imageURL]];
     [self.choiceTableView reloadData];
 }
@@ -109,6 +108,7 @@ static NSString *const DogChoiceReuseIdentifier = @"DogCardView";
     return tableView.frame.size.height / self.currentCard.options.count;
 }
 
+// TODO: Highlight feedback in select
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.delegate dogCardView:self didSelectedOption:self.currentCard.options[indexPath.row] atIndex:self.currentIndex withStatus:DogCardSelected];
 }
