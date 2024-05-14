@@ -6,7 +6,7 @@ target 'DogLovers' do
   use_frameworks!
 
   # Pods for DogLovers
-  # pod 'FMDB'
+  pod 'SDWebImage', '~> 5.19.0'
 
   target 'DogLoversTests' do
     inherit! :search_paths

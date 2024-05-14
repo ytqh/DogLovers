@@ -27,6 +27,8 @@
     
     self.cardView.delegate = self;
     self.cardView.dataSource = self;
+    
+    [self.cardView reload];
 }
 
 - (IBAction)popupController:(id)sender {

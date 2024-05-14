@@ -1,2 +1,2 @@
 ${PODS_ROOT}/Target Support Files/Pods-DogLovers-DogLoversUITests/Pods-DogLovers-DogLoversUITests-frameworks.sh
-${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework

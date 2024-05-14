@@ -6,6 +6,7 @@
 //
 
 #import "DogCardView.h"
+#import <SDWebImage/SDWebImage.h>
 
 @interface DogCardData ()
 
@@ -62,7 +63,11 @@
 
 - (void)reload {
     // TODO: set data;
-//    self.dogImage =self.currentCard.imageURL; // TODO: SDWebImage
+    [self.dogImage sd_setImageWithURL:[NSURL URLWithString:self.currentCard.imageURL]];
+}
+
+- (DogCardData *)currentCard {
+    return [self.dataSource dogCardView:self cardDataAtIndex:self.currentIndex];
 }
 
 @end

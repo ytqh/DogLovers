@@ -21,8 +21,20 @@
     return card;
 }
 
-- (NSString *)getImageURL {
+- (NSString *)imageURL {
     return self.dog.imageURLs.firstObject;
+}
+
+- (NSArray<DogBreed *> *)options {
+    // TODO: random gen four options
+    NSMutableArray<DogBreed *> *options = [NSMutableArray array];
+    for (int i = 0; i < 4; i++) {
+        DogBreed *option = [DogBreed new];
+        option.name = [NSString stringWithFormat:@"Option %d", i + 1];
+        option.subBreed = [NSString stringWithFormat:@"SubOption %d", i + 1];
+        [options addObject:option];
+    }
+    return [options copy];
 }
 
 @end

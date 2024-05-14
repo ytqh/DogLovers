@@ -27,6 +27,9 @@ typedef NS_ENUM(NSUInteger, DogCardSelectStatus) {
 @end
 
 @interface DogCardView : UIView
+
+- (void)reload;
+
 @end
 
 @protocol DogCardViewDelegate <NSObject>
