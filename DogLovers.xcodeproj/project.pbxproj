@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		307EB1B20F4F513B0C21D675 /* Pods_DogLovers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB795E689918215CF689540C /* Pods_DogLovers.framework */; };
+		61789D2A2BF3019400EFC1A4 /* DogCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61789D292BF3019400EFC1A4 /* DogCardView.m */; };
+		61789D2C2BF301D600EFC1A4 /* DogCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61789D2B2BF301D600EFC1A4 /* DogCardView.xib */; };
 		61B53A3D2BEF1F2C0050A387 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B53A3C2BEF1F2C0050A387 /* AppDelegate.m */; };
 		61B53A402BEF1F2C0050A387 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B53A3F2BEF1F2C0050A387 /* SceneDelegate.m */; };
-		61B53A432BEF1F2C0050A387 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B53A422BEF1F2C0050A387 /* ViewController.m */; };
 		61B53A462BEF1F2C0050A387 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 61B53A452BEF1F2C0050A387 /* Base */; };
 		61B53A482BEF1F2E0050A387 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61B53A472BEF1F2E0050A387 /* Assets.xcassets */; };
 		61B53A4B2BEF1F2E0050A387 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 61B53A4A2BEF1F2E0050A387 /* Base */; };
@@ -51,13 +52,14 @@
 		23DF63737B908DE2B2BBCD1D /* Pods-DogLoversTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogLoversTests.debug.xcconfig"; path = "Target Support Files/Pods-DogLoversTests/Pods-DogLoversTests.debug.xcconfig"; sourceTree = "<group>"; };
 		525D103AD751C37A49DB1257 /* Pods-DogLovers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogLovers.release.xcconfig"; path = "Target Support Files/Pods-DogLovers/Pods-DogLovers.release.xcconfig"; sourceTree = "<group>"; };
 		56872D08A59B1809AE6F7DEC /* Pods-DogLovers-DogLoversUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogLovers-DogLoversUITests.release.xcconfig"; path = "Target Support Files/Pods-DogLovers-DogLoversUITests/Pods-DogLovers-DogLoversUITests.release.xcconfig"; sourceTree = "<group>"; };
+		61789D282BF3019400EFC1A4 /* DogCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DogCardView.h; sourceTree = "<group>"; };
+		61789D292BF3019400EFC1A4 /* DogCardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DogCardView.m; sourceTree = "<group>"; };
+		61789D2B2BF301D600EFC1A4 /* DogCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DogCardView.xib; sourceTree = "<group>"; };
 		61B53A382BEF1F2C0050A387 /* DogLovers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogLovers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B53A3B2BEF1F2C0050A387 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		61B53A3C2BEF1F2C0050A387 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		61B53A3E2BEF1F2C0050A387 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		61B53A3F2BEF1F2C0050A387 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		61B53A412BEF1F2C0050A387 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		61B53A422BEF1F2C0050A387 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		61B53A452BEF1F2C0050A387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		61B53A472BEF1F2E0050A387 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61B53A4A2BEF1F2E0050A387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -137,6 +139,50 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		61789D232BF2F37400EFC1A4 /* DogGround */ = {
+			isa = PBXGroup;
+			children = (
+				61FD858F2BEFAED2004899BC /* DogGroundController.h */,
+				61FD85902BEFAED2004899BC /* DogGroundController.m */,
+				61789D242BF2F37B00EFC1A4 /* View */,
+			);
+			path = DogGround;
+			sourceTree = "<group>";
+		};
+		61789D242BF2F37B00EFC1A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		61789D252BF2F38700EFC1A4 /* DogCards */ = {
+			isa = PBXGroup;
+			children = (
+				61789D262BF2F39800EFC1A4 /* View */,
+				61FD85922BEFAEED004899BC /* DogCardsController.h */,
+				61FD85932BEFAEED004899BC /* DogCardsController.m */,
+			);
+			path = DogCards;
+			sourceTree = "<group>";
+		};
+		61789D262BF2F39800EFC1A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		61789D272BF2F3AD00EFC1A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				61789D282BF3019400EFC1A4 /* DogCardView.h */,
+				61789D292BF3019400EFC1A4 /* DogCardView.m */,
+				61789D2B2BF301D600EFC1A4 /* DogCardView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		61B53A2F2BEF1F2C0050A387 = {
 			isa = PBXGroup;
 			children = (
@@ -162,14 +208,13 @@
 		61B53A3A2BEF1F2C0050A387 /* DogLovers */ = {
 			isa = PBXGroup;
 			children = (
-				61FD858E2BEFAEB2004899BC /* Controller */,
+				61789D272BF2F3AD00EFC1A4 /* View */,
 				61FD85812BEF9955004899BC /* Model */,
+				61FD858E2BEFAEB2004899BC /* Controller */,
 				61B53A3B2BEF1F2C0050A387 /* AppDelegate.h */,
 				61B53A3C2BEF1F2C0050A387 /* AppDelegate.m */,
 				61B53A3E2BEF1F2C0050A387 /* SceneDelegate.h */,
 				61B53A3F2BEF1F2C0050A387 /* SceneDelegate.m */,
-				61B53A412BEF1F2C0050A387 /* ViewController.h */,
-				61B53A422BEF1F2C0050A387 /* ViewController.m */,
 				61B53A442BEF1F2C0050A387 /* Main.storyboard */,
 				61B53A472BEF1F2E0050A387 /* Assets.xcassets */,
 				61B53A492BEF1F2E0050A387 /* LaunchScreen.storyboard */,
@@ -212,10 +257,8 @@
 		61FD858E2BEFAEB2004899BC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				61FD858F2BEFAED2004899BC /* DogGroundController.h */,
-				61FD85902BEFAED2004899BC /* DogGroundController.m */,
-				61FD85922BEFAEED004899BC /* DogCardsController.h */,
-				61FD85932BEFAEED004899BC /* DogCardsController.m */,
+				61789D252BF2F38700EFC1A4 /* DogCards */,
+				61789D232BF2F37400EFC1A4 /* DogGround */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -329,6 +372,7 @@
 				61B53A482BEF1F2E0050A387 /* Assets.xcassets in Resources */,
 				61B53A4B2BEF1F2E0050A387 /* Base in Resources */,
 				61B53A462BEF1F2C0050A387 /* Base in Resources */,
+				61789D2C2BF301D600EFC1A4 /* DogCardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,10 +466,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61B53A432BEF1F2C0050A387 /* ViewController.m in Sources */,
 				61B53A3D2BEF1F2C0050A387 /* AppDelegate.m in Sources */,
 				61FD85842BEF999F004899BC /* Dog.m in Sources */,
 				61B53A4E2BEF1F2E0050A387 /* main.m in Sources */,
+				61789D2A2BF3019400EFC1A4 /* DogCardView.m in Sources */,
 				61FD85882BEF99DF004899BC /* Memory.m in Sources */,
 				61FD85942BEFAEED004899BC /* DogCardsController.m in Sources */,
 				61FD85912BEFAED2004899BC /* DogGroundController.m in Sources */,

@@ -9,6 +9,11 @@
 
 @interface DogGroundController ()
 
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UILabel *progressTitle;
+@property (weak, nonatomic) IBOutlet UILabel *progressNumTitle;
+@property (weak, nonatomic) IBOutlet UITableView *dogsTableView;
+
 @end
 
 @implementation DogGroundController
@@ -16,6 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self setupViews];
 }
 
 /*
@@ -27,5 +34,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+// TODO: set up data with DogLovers
+- (void)setupViews {
+
+}
 
 @end

@@ -6,8 +6,12 @@
 //
 
 #import "DogCardsController.h"
+#import "DogCardView.h"
 
 @interface DogCardsController ()
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *progessNaviItem;
+@property (weak, nonatomic) IBOutlet DogCardView *CardView;
 
 @end
 
@@ -27,5 +31,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)popupController:(id)sender {
+    
+    // TODO: save current status?
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

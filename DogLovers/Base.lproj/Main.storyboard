@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1ea-h2-GSr">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -8,23 +8,167 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--DogLovers-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="DogGroundController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wx8-xH-7IP">
+                                <rect key="frame" x="16" y="106" width="343" height="4"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="4" id="4OM-9I-y0Q"/>
+                                </constraints>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTv-Xo-bg4">
+                                <rect key="frame" x="16" y="129" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22/300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRd-6w-Wt4">
+                                <rect key="frame" x="303" y="129" width="56" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pm5-FT-dOe">
+                                <rect key="frame" x="16" y="179" width="343" height="490"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glL-Dz-Qw8">
+                                <rect key="frame" x="48" y="695" width="279" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="dKq-ex-VzX"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <buttonConfiguration key="configuration" style="plain" title="30 Puppies Today"/>
+                                <connections>
+                                    <segue destination="AJJ-vc-e1X" kind="show" id="2VI-Ov-Mkq"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="glL-Dz-Qw8" secondAttribute="trailing" constant="48" id="2s2-io-ukX"/>
+                            <constraint firstItem="glL-Dz-Qw8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="48" id="3eD-qe-82u"/>
+                            <constraint firstItem="QTv-Xo-bg4" firstAttribute="top" secondItem="wx8-xH-7IP" secondAttribute="bottom" constant="19" id="5Jb-Bs-FnP"/>
+                            <constraint firstItem="hRd-6w-Wt4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wx8-xH-7IP" secondAttribute="bottom" constant="10" id="9wY-it-qz5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pm5-FT-dOe" secondAttribute="trailing" constant="16" id="DEQ-Sc-SR9"/>
+                            <constraint firstItem="glL-Dz-Qw8" firstAttribute="top" secondItem="pm5-FT-dOe" secondAttribute="bottom" constant="26" id="SjC-hY-OLv"/>
+                            <constraint firstItem="hRd-6w-Wt4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QTv-Xo-bg4" secondAttribute="trailing" constant="30" id="TgX-uG-ins"/>
+                            <constraint firstItem="pm5-FT-dOe" firstAttribute="top" secondItem="QTv-Xo-bg4" secondAttribute="bottom" constant="29" id="WXv-qX-haU"/>
+                            <constraint firstItem="hRd-6w-Wt4" firstAttribute="bottom" secondItem="QTv-Xo-bg4" secondAttribute="bottom" id="erb-Wv-Gop"/>
+                            <constraint firstItem="QTv-Xo-bg4" firstAttribute="leading" secondItem="wx8-xH-7IP" secondAttribute="leading" id="gsm-ly-62T"/>
+                            <constraint firstItem="hRd-6w-Wt4" firstAttribute="trailing" secondItem="wx8-xH-7IP" secondAttribute="trailing" id="iXU-EZ-X2W"/>
+                            <constraint firstItem="pm5-FT-dOe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="ngZ-SC-IR3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="glL-Dz-Qw8" secondAttribute="bottom" constant="23" id="o1u-qB-MEa"/>
+                            <constraint firstItem="wx8-xH-7IP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="uFA-ot-2z4"/>
+                            <constraint firstItem="wx8-xH-7IP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="wyK-sD-sLN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wx8-xH-7IP" secondAttribute="trailing" constant="16" id="zzH-dS-zfK"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="DogLovers" id="YSj-zq-WJ9"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="dogsTableView" destination="pm5-FT-dOe" id="ju2-73-w1b"/>
+                        <outlet property="progressNumTitle" destination="hRd-6w-Wt4" id="fZE-ra-DNf"/>
+                        <outlet property="progressTitle" destination="QTv-Xo-bg4" id="Dna-e8-SNL"/>
+                        <outlet property="progressView" destination="wx8-xH-7IP" id="VAN-4o-6Z8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-16" y="1"/>
+            <point key="canvasLocation" x="78.625954198473281" y="-720.42253521126759"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xax-e6-kKu">
+            <objects>
+                <navigationController modalPresentationStyle="fullScreen" id="AJJ-vc-e1X" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="eVg-dH-ke0"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8HS-pG-IOo">
+                        <rect key="frame" x="0.0" y="50" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="i1t-jn-Qk5" kind="relationship" relationship="rootViewController" id="Nds-4n-HC0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8lt-Vl-ohn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="915" y="-720"/>
+        </scene>
+        <!--Dog Cards Controller-->
+        <scene sceneID="JDK-lJ-xyj">
+            <objects>
+                <viewController id="i1t-jn-Qk5" customClass="DogCardsController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bUV-G1-AQH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mir-6g-gPd" customClass="DogCardView">
+                                <rect key="frame" x="0.0" y="94" width="375" height="684"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pSq-eL-sme"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mir-6g-gPd" firstAttribute="top" secondItem="pSq-eL-sme" secondAttribute="top" id="aRW-WI-2js"/>
+                            <constraint firstItem="mir-6g-gPd" firstAttribute="trailing" secondItem="pSq-eL-sme" secondAttribute="trailing" id="fnn-dO-crF"/>
+                            <constraint firstItem="mir-6g-gPd" firstAttribute="bottom" secondItem="pSq-eL-sme" secondAttribute="bottom" id="l2Z-RU-fBL"/>
+                            <constraint firstItem="mir-6g-gPd" firstAttribute="leading" secondItem="pSq-eL-sme" secondAttribute="leading" id="zst-43-W0L"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" style="browser" id="mhq-M7-pFL">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="Clear" id="SqL-3W-r1U">
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <connections>
+                                <action selector="popupController:" destination="i1t-jn-Qk5" id="Ekf-oQ-0iW"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="0/20" id="oyV-x6-wbj">
+                            <color key="tintColor" systemColor="labelColor"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="CardView" destination="mir-6g-gPd" id="sWo-dx-RC1"/>
+                        <outlet property="progessNaviItem" destination="oyV-x6-wbj" id="dVk-59-IVe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ceC-mh-U5s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1676" y="-720.44334975369463"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Wvu-Bk-8EI">
+            <objects>
+                <navigationController id="1ea-h2-GSr" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="32j-zP-mNM">
+                        <rect key="frame" x="0.0" y="50" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="24"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="TYP-TK-XRi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eyQ-yZ-5jW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-677" y="-720"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Clear" width="40" height="40"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
