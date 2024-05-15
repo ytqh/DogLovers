@@ -10,7 +10,7 @@
 
 @interface DogGroundController ()
 
-// TODO: Trophy
+// TODO: Display Trophy
 
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *progressNumTitle;
@@ -28,22 +28,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     [self setupViews];
     [self reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UIViewController *nav = segue.destinationViewController;
-    
+
     if (![nav isKindOfClass:UINavigationController.class]) {
         return;
     }
-    
+
     if (![nav.childViewControllers.firstObject isKindOfClass:DogCardsController.class]) {
         return;
     }
-    
+
     DogCardsController *cardController = nav.childViewControllers.firstObject;
     [cardController configureCards:self.todayCards];
 }
@@ -54,7 +54,6 @@
 }
 
 - (void)setupViews {
-    
 }
 
 - (void)reloadData {

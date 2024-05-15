@@ -6,6 +6,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "Dog.h"
 
 @interface DogLoversTests : XCTestCase
 
@@ -21,16 +22,17 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
+- (void)testDogDataFetchErrorNil {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Dog data fetch"];
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+    [[DogManager sharedManager] refreshDogCache:^(NSError *_Nullable error) {
+        XCTAssertNil(error, @"Error should be nil");
+        XCTAssertGreaterThan([DogManager sharedManager].allDogs.count, 10, @"Dogs count should be greater than 10");
+        XCTAssertGreaterThan([DogManager sharedManager].allDogs.lastObject.imageURLs.count, 0, @"Dogs imageURLs count should be greater than 2");
+        [expectation fulfill];
     }];
+
+    [self waitForExpectationsWithTimeout:5.0 handler:nil];
 }
 
 @end

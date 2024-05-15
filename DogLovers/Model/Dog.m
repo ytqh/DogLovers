@@ -35,6 +35,20 @@
     return self.name;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super init];
+    if (self) {
+        self.name = [coder decodeObjectForKey:@"name"];
+        self.subBreed = [coder decodeObjectForKey:@"subBreed"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.name forKey:@"name"];
+    [coder encodeObject:self.subBreed forKey:@"subBreed"];
+}
+
 @end
 
 @implementation Dog
@@ -46,17 +60,70 @@
     return dog;
 }
 
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    if (![object isKindOfClass:[Dog class]]) {
+        return NO;
+    }
+    Dog *other = (Dog *)object;
+    return [self.breed isEqual:other.breed];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super init];
+    if (self) {
+        self.breed = [coder decodeObjectForKey:@"breed"];
+        self.imageURLs = [coder decodeObjectForKey:@"imageURLs"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.breed forKey:@"breed"];
+    [coder encodeObject:self.imageURLs forKey:@"imageURLs"];
+}
+
+// fetch at random imageURL from API: https://dog.ceo/api/breed/hound/afghan/images/random
+- (void)fetchRandomImageURLsWithCompletion:(void (^)(NSError *_Nullable error))completion {
+    NSString *urlStr = [NSString stringWithFormat:@"https://dog.ceo/api/breed/%@%@/images/random/3", self.breed.name,
+                        self.breed.subBreed ? [NSString stringWithFormat:@"/%@", self.breed.subBreed] : @""];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url
+                                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            // Handle error
+            completion(error);
+            return;
+        }
+        NSError *jsonError;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        if (jsonError) {
+            // Handle JSON parsing error
+            completion(jsonError);
+            return;
+        }
+        NSString *imageURLString = json[@"message"];
+        // Use the imageURLString as needed
+        self.imageURLs = @[ imageURLString ];
+        completion(nil);
+    }];
+    [task resume];
+}
+
 @end
 
 @interface DogManager ()
 
-@property (nonatomic, copy) NSArray<DogBreed *> *allBreeds;
+@property (nonatomic, copy) NSArray<Dog *> *allDogs;
+@property (nonatomic, strong) dispatch_queue_t serialQueue;
 
 @end
 
 @implementation DogManager
 
-// TODO: Netowrk and Download Logic
+@synthesize allDogs = _allDogs;
 
 + (nonnull instancetype)sharedManager {
     static DogManager *sharedInstance = nil;
@@ -67,15 +134,155 @@
     return sharedInstance;
 }
 
-- (NSDictionary<DogBreed *, Dog *> *)dogWithBreed:(NSArray<DogBreed *> *)breeds {
-    return nil;
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _serialQueue = dispatch_queue_create("com.doglovers.dogmanager", DISPATCH_QUEUE_SERIAL);
+    }
+    return self;
 }
 
+- (NSDictionary<DogBreed *, Dog *> *)dogWithBreed:(NSArray<DogBreed *> *)breeds {
+    NSMutableDictionary<DogBreed *, Dog *> *result = [NSMutableDictionary dictionary];
+    for (Dog *dog in self.allDogs) {
+        for (DogBreed *breed in breeds) {
+            if ([dog.breed isEqual:breed]) {
+                result[breed] = dog;
+                break;
+            }
+        }
+    }
+    return [result copy];
+}
+
+// query all breeds from https://dog.ceo/api/breeds/list/all
 - (void)refreshDogCache:(nonnull void (^)(NSError *_Nullable __strong))completion {
+    NSURL *url = [NSURL URLWithString:@"https://dog.ceo/api/breeds/list/all"];
+    NSURLSessionDataTask *task =
+    [[NSURLSession sharedSession] dataTaskWithURL:url
+                                completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
+        if (error) {
+            completion(error);
+            return;
+        }
+        
+        NSError *jsonError;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        if (jsonError) {
+            completion(jsonError);
+            return;
+        }
+        
+        NSDictionary *breedsDict = json[@"message"];
+        NSMutableArray<Dog *> *dogs = [NSMutableArray array];
+        for (NSString *name in breedsDict) {
+            
+            if ([breedsDict[name] count] == 0) {
+                Dog *dog = [[Dog alloc] init];
+                DogBreed *breed = [[DogBreed alloc] init];
+                breed.name = name;
+                dog.breed = breed;
+                [dogs addObject:dog];
+                continue;
+            }
+            
+            for (NSString *subBreed in breedsDict[name]) {
+                Dog *dog = [[Dog alloc] init];
+                DogBreed *breed = [[DogBreed alloc] init];
+                breed.name = name;
+                breed.subBreed = subBreed;
+                dog.breed = breed;
+                [dogs addObject:dog];
+            }
+        }
+        
+        self.allDogs = dogs;
+        
+        [self refreshDogImagesWithDogs:dogs
+                            completion:^(NSArray<Dog *> *_Nonnull dogs, NSError *_Nullable error) {
+            self.allDogs = dogs;
+        }];
+        
+        completion(nil);
+    }];
+    [task resume];
 }
 
 - (void)refreshDogImagesWithDogs:(nonnull NSArray<Dog *> *)dogs
                       completion:(nonnull void (^)(NSArray<Dog *> *_Nonnull __strong, NSError *_Nullable __strong))completion {
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    NSMutableArray<Dog *> *updatedDogs = [NSMutableArray arrayWithArray:dogs];
+    
+    for (NSInteger i = 0; i < updatedDogs.count; i += 10) {
+        NSRange range = NSMakeRange(i, MIN(10, updatedDogs.count - i));
+        NSArray<Dog *> *batch = [updatedDogs subarrayWithRange:range];
+        
+        for (Dog *dog in batch) {
+            dispatch_group_enter(group);
+            dispatch_async(queue, ^{
+                [dog fetchRandomImageURLsWithCompletion:^(NSError *_Nullable error) {
+                    if (error) {
+                        NSLog(@"fetch dog %@ image error: %@", dog, error);
+                    }
+                    dispatch_group_leave(group);
+                }];
+            });
+        }
+    }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        completion(updatedDogs, nil);
+    });
+}
+
+// use serial queue to make thread safe
+- (NSArray<Dog *> *)allDogs {
+    __block NSArray<Dog *> *dogs;
+    dispatch_sync(self.serialQueue, ^{
+        if (_allDogs == nil) {
+            dogs = [self loadFromUserDefault];
+            _allDogs = dogs;
+        } else {
+            dogs = _allDogs;
+        }
+    });
+    
+    return dogs;
+}
+
+- (void)setAllDogs:(NSArray<Dog *> *)allDogs {
+    dispatch_sync(self.serialQueue, ^{
+        _allDogs = [allDogs copy];
+        [self saveToUserDefault:allDogs];
+    });
+}
+
+- (void)saveToUserDefault:(NSArray<Dog *> *)dogs {
+    NSError *error;
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dogs requiringSecureCoding:NO error:&error];
+    
+    if (error != nil) {
+        NSLog(@"save dogs to user defaults error: %@", error);
+        return;
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"dogData"];
+    return;
+}
+
+- (NSArray<Dog *> *)loadFromUserDefault {
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"dogData"];
+    
+    NSError *error;
+    NSArray<Dog *> *dogs = [NSKeyedUnarchiver unarchivedObjectOfClass:DogBreed.class fromData:data error:&error];
+    
+    if (error != nil) {
+        NSLog(@"load breed from user defaults error: %@", error);
+    }
+    
+    return dogs;
 }
 
 @end

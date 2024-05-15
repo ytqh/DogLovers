@@ -9,23 +9,25 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DogBreed : NSObject <NSCopying>
+@interface DogBreed : NSObject <NSCopying, NSCoding>
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy, nullable) NSString *subBreed;
 
 @end
 
-@interface Dog : NSObject
+@interface Dog : NSObject <NSCopying, NSCoding>
 
 @property (nonatomic, copy) DogBreed *breed;
 @property (nonatomic, copy) NSArray<NSString *> *imageURLs;
+
+- (void)fetchRandomImageURLs;
 
 @end
 
 @interface DogManager : NSObject
 
-@property (nonatomic, copy, readonly) NSArray<DogBreed *> *allBreeds;
+@property (nonatomic, copy, readonly) NSArray<Dog *> *allDogs;
 
 + (instancetype)sharedManager;
 
@@ -35,9 +37,6 @@ NS_ASSUME_NONNULL_BEGIN
 // query dog with breed
 // return nil if not found
 - (NSDictionary<DogBreed *, Dog *> *)dogWithBreed:(NSArray<DogBreed *> *)breeds;
-
-// refreshDogImages randomly select 3 images for each dog
-- (void)refreshDogImagesWithDogs:(NSArray<Dog *> *)dogs completion:(void (^)(NSArray<Dog *> *dogs, NSError *_Nullable error))completion;
 
 @end
 
