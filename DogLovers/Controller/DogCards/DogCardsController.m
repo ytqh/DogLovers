@@ -72,7 +72,6 @@
     [self.memory updateMemoryWithCard:self.cards[index] statue:cardStatus];
 
     if (index >= self.cardDatas.count - 1) {
-        // TODO: show a warm feedback
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         [view nextCard];

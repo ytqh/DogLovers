@@ -123,6 +123,8 @@ static NSString *const DogChoiceReuseIdentifier = @"DogCardView";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    tableView.userInteractionEnabled = NO;
+    
     DogBreed *selectedOption = self.currentCard.options[indexPath.row];
     BOOL isCorrectOption = [selectedOption isEqual:self.currentCard.correctOption];
     
@@ -136,6 +138,7 @@ static NSString *const DogChoiceReuseIdentifier = @"DogCardView";
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.delegate dogCardView:self didSelectedOption:selectedOption atIndex:self.currentIndex withStatus:DogCardSelected];
+        tableView.userInteractionEnabled = YES;
     });
 }
 

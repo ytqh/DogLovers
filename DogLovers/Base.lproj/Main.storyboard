@@ -50,8 +50,8 @@
                                     <constraint firstAttribute="width" secondItem="M6O-5C-EX0" secondAttribute="height" multiplier="1:1" id="isc-tb-ASc"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 puppies a day!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5T7-4s-B91">
-                                <rect key="frame" x="62" y="257" width="251" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 puppies a day!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5T7-4s-B91">
+                                <rect key="frame" x="62.333333333333329" y="257.33333333333331" width="250.33333333333337" height="31.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -67,11 +67,11 @@
                             <constraint firstItem="M6O-5C-EX0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="Bnf-Pq-YWm"/>
                             <constraint firstItem="hRd-6w-Wt4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QTv-Xo-bg4" secondAttribute="trailing" constant="30" id="TgX-uG-ins"/>
                             <constraint firstItem="5T7-4s-B91" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cS3-vj-gCP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5T7-4s-B91" secondAttribute="trailing" constant="60" id="cSM-mA-QrL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5T7-4s-B91" secondAttribute="trailing" constant="16" id="cSM-mA-QrL"/>
                             <constraint firstItem="hRd-6w-Wt4" firstAttribute="bottom" secondItem="QTv-Xo-bg4" secondAttribute="bottom" id="erb-Wv-Gop"/>
                             <constraint firstItem="QTv-Xo-bg4" firstAttribute="leading" secondItem="wx8-xH-7IP" secondAttribute="leading" id="gsm-ly-62T"/>
                             <constraint firstItem="hRd-6w-Wt4" firstAttribute="trailing" secondItem="wx8-xH-7IP" secondAttribute="trailing" id="iXU-EZ-X2W"/>
-                            <constraint firstItem="5T7-4s-B91" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="ihZ-OA-3Ng"/>
+                            <constraint firstItem="5T7-4s-B91" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="ihZ-OA-3Ng"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="M6O-5C-EX0" secondAttribute="trailing" constant="60" id="lvm-Rb-9Mz"/>
                             <constraint firstItem="M6O-5C-EX0" firstAttribute="top" secondItem="5T7-4s-B91" secondAttribute="bottom" constant="19.666666666666686" id="nF8-NT-56m"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="glL-Dz-Qw8" secondAttribute="bottom" constant="23" id="o1u-qB-MEa"/>
@@ -85,6 +85,7 @@
                     <navigationItem key="navigationItem" title="DogLovers" id="YSj-zq-WJ9"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="gameText" destination="5T7-4s-B91" id="Xww-GM-pc4"/>
                         <outlet property="playButton" destination="glL-Dz-Qw8" id="PWq-cL-1qH"/>
                         <outlet property="progressNumTitle" destination="hRd-6w-Wt4" id="fZE-ra-DNf"/>
                         <outlet property="progressView" destination="wx8-xH-7IP" id="VAN-4o-6Z8"/>

@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *progressNumTitle;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIImageView *trophyImage;
+@property (weak, nonatomic) IBOutlet UILabel *gameText;
 
 @property (readonly) NSArray<MemoryCard *> *todayCards;
 @property (readonly) Memory *memory;
@@ -52,7 +53,7 @@
 }
 
 - (void)setupViews {
-    [self.playButton setTitle:@"Great job!\nYou've finished today's game!" forState:UIControlStateDisabled];
+    [self.playButton setTitle:@"See you tommorrow!" forState:UIControlStateDisabled];
 }
 
 - (void)reloadData {
@@ -62,9 +63,11 @@
     if (self.memory.todayCountToRemember == 0) {
         self.playButton.enabled = NO;
         self.trophyImage.alpha = 1.0;
+        [self.gameText setText:@"Great!\nYou've learned 10 new puppies!"];
     } else {
         self.playButton.enabled = YES;
         self.trophyImage.alpha = 0.4;
+        [self.gameText setText:@"10 puppies a day!"];
         [self.playButton setTitle:[NSString stringWithFormat:@"%lu Remaining", self.memory.todayCountToRemember] forState:UIControlStateNormal];
     }
 }
