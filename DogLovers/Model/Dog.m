@@ -49,6 +49,10 @@
     [coder encodeObject:self.subBreed forKey:@"subBreed"];
 }
 
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
 @end
 
 @implementation Dog
@@ -83,6 +87,10 @@
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.breed forKey:@"breed"];
     [coder encodeObject:self.imageURLs forKey:@"imageURLs"];
+}
+
++ (BOOL)supportsSecureCoding {
+    return YES;
 }
 
 // fetch at random imageURL from API: https://dog.ceo/api/breed/hound/afghan/images/random
@@ -259,21 +267,9 @@
     });
 }
 
-- (void)saveToUserDefault:(NSArray<Dog *> *)dogs {
-    NSError *error;
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dogs requiringSecureCoding:NO error:&error];
-    
-    if (error != nil) {
-        NSLog(@"save dogs to user defaults error: %@", error);
-        return;
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"dogData"];
-    return;
-}
-
 - (NSArray<Dog *> *)loadFromUserDefault {
-    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"dogData"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *data = [defaults objectForKey:@"dogData"];
     
     NSError *error;
     NSArray<Dog *> *dogs = [NSKeyedUnarchiver unarchivedObjectOfClass:DogBreed.class fromData:data error:&error];
@@ -283,6 +279,21 @@
     }
     
     return dogs;
+}
+
+- (void)saveToUserDefault:(NSArray<Dog *> *)dogs {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSError *error;
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dogs requiringSecureCoding:NO error:&error];
+    
+    if (error != nil) {
+        NSLog(@"save dogs to user defaults error: %@", error);
+        return;
+    }
+    
+    [defaults setObject:data forKey:@"dogData"];
+    return;
 }
 
 @end

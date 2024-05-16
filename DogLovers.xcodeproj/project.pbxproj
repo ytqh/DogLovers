@@ -21,11 +21,8 @@
 		61B53A622BEF1F2E0050A387 /* DogLoversUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B53A612BEF1F2E0050A387 /* DogLoversUITests.m */; };
 		61B53A642BEF1F2E0050A387 /* DogLoversUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B53A632BEF1F2E0050A387 /* DogLoversUITestsLaunchTests.m */; };
 		61FD85842BEF999F004899BC /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD85832BEF999F004899BC /* Dog.m */; };
-		61FD85852BEF999F004899BC /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD85832BEF999F004899BC /* Dog.m */; };
 		61FD85882BEF99DF004899BC /* Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD85872BEF99DF004899BC /* Memory.m */; };
-		61FD85892BEF99DF004899BC /* Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD85872BEF99DF004899BC /* Memory.m */; };
 		61FD858C2BEF9AA0004899BC /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD858B2BEF9AA0004899BC /* Game.m */; };
-		61FD858D2BEF9AA0004899BC /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD858B2BEF9AA0004899BC /* Game.m */; };
 		61FD85912BEFAED2004899BC /* DogGroundController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD85902BEFAED2004899BC /* DogGroundController.m */; };
 		61FD85942BEFAEED004899BC /* DogCardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD85932BEFAEED004899BC /* DogCardsController.m */; };
 		B9F848B310C47F273F5DD82F /* Pods_DogLoversTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49526A19B6A132145A05304 /* Pods_DogLoversTests.framework */; };
@@ -518,10 +515,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61FD85852BEF999F004899BC /* Dog.m in Sources */,
-				61FD85892BEF99DF004899BC /* Memory.m in Sources */,
 				61B53A582BEF1F2E0050A387 /* DogLoversTests.m in Sources */,
-				61FD858D2BEF9AA0004899BC /* Game.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

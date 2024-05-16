@@ -9,14 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DogBreed : NSObject <NSCopying, NSCoding>
+@interface DogBreed : NSObject <NSCopying, NSSecureCoding>
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy, nullable) NSString *subBreed;
 
 @end
 
-@interface Dog : NSObject <NSCopying, NSCoding>
+@interface Dog : NSObject <NSCopying, NSSecureCoding>
 
 @property (nonatomic, copy) DogBreed *breed;
 @property (nonatomic, copy) NSArray<NSString *> *imageURLs;

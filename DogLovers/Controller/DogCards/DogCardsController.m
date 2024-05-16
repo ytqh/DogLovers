@@ -26,10 +26,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     self.cardView.delegate = self;
     self.cardView.dataSource = self;
-        
+
     [self reload];
 }
 
@@ -44,30 +44,25 @@
         DogCardData *data = [[DogCardData alloc] initWithCard:card];
         [cardDatas addObject:data];
     }
-    
+
     self.cardDatas = cardDatas;
 }
 
 #pragma mark - Card Delegate && DataSource
 
 - (void)dogCardView:(nonnull DogCardView *)view didSelectedOption:(DogBreed *)option atIndex:(NSUInteger)index withStatus:(DogCardSelectStatus)status {
-        
+
     MemoryCard *card = self.cards[index];
     MemoryCardStatus cardStatus = MemoryCardStatusWrong;
-    
+
     if (status == DogCardForget) {
         cardStatus = MemoryCardStatusForget;
     } else if ([option isEqual:card.correctOption]) {
         cardStatus = MemoryCardStatusCorrect;
     }
-    
-    NSError *err = [self.memory updateMemoryWithCard:self.cards[index] statue:cardStatus];
-    
-    if (err != nil) {
-        NSLog(@"Card Memory Status Save Wrong: %@", err.debugDescription);
-        return;
-    }
-        
+
+    [self.memory updateMemoryWithCard:self.cards[index] statue:cardStatus];
+
     if (index >= self.cardDatas.count - 1) {
         // TODO: show a warm feedback
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -77,12 +72,12 @@
     }
 }
 
-- (nonnull DogCardData *)dogCardView:(nonnull DogCardView *)view cardDataAtIndex:(NSUInteger)index { 
+- (nonnull DogCardData *)dogCardView:(nonnull DogCardView *)view cardDataAtIndex:(NSUInteger)index {
     DogCardData *data = self.cardDatas[index];
     return data;
 }
 
-- (NSUInteger)numberOfCardsInDogCardView:(nonnull DogCardView *)view { 
+- (NSUInteger)numberOfCardsInDogCardView:(nonnull DogCardView *)view {
     return self.cardDatas.count;
 }
 

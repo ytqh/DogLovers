@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, MemoryCardStatus) {
     MemoryCardStatusCorrect,
 };
 
-@interface MemoryCard : NSObject
+@interface MemoryCard : NSObject <NSCopying, NSSecureCoding>
 
 @property (nonatomic, copy, readonly) Dog *dog;
 @property (nonatomic, copy, readonly) NSString *imageURL;
@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, MemoryCardStatus) {
 
 // update memory status with card and status
 // return err if not success
-- (NSError *)updateMemoryWithCard:(MemoryCard *)card statue:(MemoryCardStatus)status;
+- (void)updateMemoryWithCard:(MemoryCard *)card statue:(MemoryCardStatus)status;
 
 // return random cards with count
 - (NSArray<MemoryCard *> *)unfinishedCardsWithCount:(NSUInteger)count;
