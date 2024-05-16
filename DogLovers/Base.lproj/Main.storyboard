@@ -23,32 +23,39 @@
                                 </constraints>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTv-Xo-bg4">
-                                <rect key="frame" x="16" y="129" width="68" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="129" width="144.33333333333334" height="38"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22/300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRd-6w-Wt4">
-                                <rect key="frame" x="303" y="129" width="56" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="247.66666666666666" y="129" width="111.33333333333334" height="38"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pm5-FT-dOe">
-                                <rect key="frame" x="16" y="179" width="343" height="490"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glL-Dz-Qw8">
-                                <rect key="frame" x="48" y="695" width="279" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="dKq-ex-VzX"/>
-                                </constraints>
+                                <rect key="frame" x="48" y="690.33333333333337" width="279" height="64.666666666666629"/>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <buttonConfiguration key="configuration" style="plain" title="30 Puppies Today"/>
+                                <buttonConfiguration key="configuration" style="plain" title="30 Puppies">
+                                    <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="40"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <segue destination="AJJ-vc-e1X" kind="show" id="nSw-I7-9v6"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Trophy" translatesAutoresizingMaskIntoConstraints="NO" id="M6O-5C-EX0">
+                                <rect key="frame" x="60" y="308.66666666666669" width="255" height="255.00000000000006"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="M6O-5C-EX0" secondAttribute="height" multiplier="1:1" id="isc-tb-ASc"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 puppies a day!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5T7-4s-B91">
+                                <rect key="frame" x="62" y="257" width="251" height="32"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -57,16 +64,20 @@
                             <constraint firstItem="glL-Dz-Qw8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="48" id="3eD-qe-82u"/>
                             <constraint firstItem="QTv-Xo-bg4" firstAttribute="top" secondItem="wx8-xH-7IP" secondAttribute="bottom" constant="19" id="5Jb-Bs-FnP"/>
                             <constraint firstItem="hRd-6w-Wt4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wx8-xH-7IP" secondAttribute="bottom" constant="10" id="9wY-it-qz5"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pm5-FT-dOe" secondAttribute="trailing" constant="16" id="DEQ-Sc-SR9"/>
-                            <constraint firstItem="glL-Dz-Qw8" firstAttribute="top" secondItem="pm5-FT-dOe" secondAttribute="bottom" constant="26" id="SjC-hY-OLv"/>
+                            <constraint firstItem="M6O-5C-EX0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="Bnf-Pq-YWm"/>
                             <constraint firstItem="hRd-6w-Wt4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QTv-Xo-bg4" secondAttribute="trailing" constant="30" id="TgX-uG-ins"/>
-                            <constraint firstItem="pm5-FT-dOe" firstAttribute="top" secondItem="QTv-Xo-bg4" secondAttribute="bottom" constant="29" id="WXv-qX-haU"/>
+                            <constraint firstItem="5T7-4s-B91" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cS3-vj-gCP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5T7-4s-B91" secondAttribute="trailing" constant="60" id="cSM-mA-QrL"/>
                             <constraint firstItem="hRd-6w-Wt4" firstAttribute="bottom" secondItem="QTv-Xo-bg4" secondAttribute="bottom" id="erb-Wv-Gop"/>
                             <constraint firstItem="QTv-Xo-bg4" firstAttribute="leading" secondItem="wx8-xH-7IP" secondAttribute="leading" id="gsm-ly-62T"/>
                             <constraint firstItem="hRd-6w-Wt4" firstAttribute="trailing" secondItem="wx8-xH-7IP" secondAttribute="trailing" id="iXU-EZ-X2W"/>
-                            <constraint firstItem="pm5-FT-dOe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="ngZ-SC-IR3"/>
+                            <constraint firstItem="5T7-4s-B91" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="ihZ-OA-3Ng"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="M6O-5C-EX0" secondAttribute="trailing" constant="60" id="lvm-Rb-9Mz"/>
+                            <constraint firstItem="M6O-5C-EX0" firstAttribute="top" secondItem="5T7-4s-B91" secondAttribute="bottom" constant="19.666666666666686" id="nF8-NT-56m"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="glL-Dz-Qw8" secondAttribute="bottom" constant="23" id="o1u-qB-MEa"/>
+                            <constraint firstItem="M6O-5C-EX0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="srN-Gc-LJG"/>
                             <constraint firstItem="wx8-xH-7IP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="uFA-ot-2z4"/>
+                            <constraint firstItem="M6O-5C-EX0" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="ubl-14-Lch"/>
                             <constraint firstItem="wx8-xH-7IP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="wyK-sD-sLN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wx8-xH-7IP" secondAttribute="trailing" constant="16" id="zzH-dS-zfK"/>
                         </constraints>
@@ -74,10 +85,10 @@
                     <navigationItem key="navigationItem" title="DogLovers" id="YSj-zq-WJ9"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="dogsTableView" destination="pm5-FT-dOe" id="ju2-73-w1b"/>
                         <outlet property="playButton" destination="glL-Dz-Qw8" id="PWq-cL-1qH"/>
                         <outlet property="progressNumTitle" destination="hRd-6w-Wt4" id="fZE-ra-DNf"/>
                         <outlet property="progressView" destination="wx8-xH-7IP" id="VAN-4o-6Z8"/>
+                        <outlet property="trophyImage" destination="M6O-5C-EX0" id="8cq-0v-Pnp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -166,6 +177,7 @@
     </scenes>
     <resources>
         <image name="Clear" width="40" height="40"/>
+        <image name="Trophy" width="94" height="87"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

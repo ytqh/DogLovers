@@ -11,7 +11,6 @@
 @interface DogCardData ()
 
 @property (nonatomic, copy) Dog *dog;
-@property (nonatomic, copy) NSString *imageURL;
 @property (nonatomic, copy) NSArray<DogBreed *> *options;
 @property (nonatomic, copy) DogBreed *correctOption;
 
@@ -23,12 +22,15 @@
     self = [super init];
     if (self) {
         self.dog = card.dog;
-        self.imageURL = card.imageURL;
         self.options = card.options;
         self.correctOption = card.correctOption;
     }
 
     return self;
+}
+
+- (NSString *)imageURL {
+    return self.dog.imageURLs.firstObject;
 }
 
 @end
@@ -81,7 +83,18 @@ static NSString *const DogChoiceReuseIdentifier = @"DogCardView";
 
 - (void)nextCard {
     self.currentIndex += 1;
-    [self reload];
+    if (self.currentCard.imageURL.length == 0) {
+        __weak typeof(self) weakSelf = self;
+        [self.currentCard.dog fetchRandomImageURLsWithCompletion:^(NSError * _Nullable error) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf reload];
+            });
+        }];
+    } else {
+        [self reload];
+    }
 }
 
 #pragma mark - UITableViewDelegate & DataSource

@@ -250,17 +250,13 @@
 
 // use serial queue to make thread safe
 - (NSArray<Dog *> *)allDogs {
-    __block NSArray<Dog *> *dogs;
     dispatch_sync(self.serialQueue, ^{
         if (_allDogs == nil) {
-            dogs = [self loadFromUserDefault];
-            _allDogs = dogs;
-        } else {
-            dogs = _allDogs;
+            _allDogs = [self loadFromUserDefault];
         }
     });
     
-    return dogs;
+    return _allDogs;
 }
 
 - (void)setAllDogs:(NSArray<Dog *> *)allDogs {

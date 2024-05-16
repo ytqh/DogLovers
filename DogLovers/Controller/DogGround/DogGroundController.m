@@ -14,8 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *progressNumTitle;
-@property (weak, nonatomic) IBOutlet UITableView *dogsTableView;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIImageView *trophyImage;
 
 @property (readonly) NSArray<MemoryCard *> *todayCards;
 @property (readonly) Memory *memory;
@@ -63,9 +63,11 @@
     
     if (self.memory.todayCountToRemember == 0) {
         self.playButton.enabled = NO;
+        self.trophyImage.alpha = 1.0;
     } else {
         self.playButton.enabled = YES;
-        [self.playButton setTitle:[NSString stringWithFormat:@"%lu Puppies Today!", self.memory.todayCountToRemember] forState:UIControlStateNormal];
+        self.trophyImage.alpha = 0.4;
+        [self.playButton setTitle:[NSString stringWithFormat:@"%lu Remaining", self.memory.todayCountToRemember] forState:UIControlStateNormal];
     }
 }
 

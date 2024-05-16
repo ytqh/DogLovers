@@ -31,6 +31,11 @@
     self.cardView.delegate = self;
     self.cardView.dataSource = self;
     
+    NSDictionary *attributes = @{
+        NSFontAttributeName: [UIFont fontWithName:@"chalkduster" size:30],  // Change font size here
+    };
+    [self.progessNaviItem setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    
     [self preLoadCardData];
 
     [self reload];

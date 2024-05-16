@@ -38,8 +38,16 @@
         }
         [options addObject:option];
     }
-    
+
     [options addObject:correctOption];
+
+    // shuffle the options
+    NSUInteger count = options.count;
+    for (NSUInteger i = 0; i < count; i++) {
+        NSUInteger remainingCount = count - i;
+        NSUInteger exchangeIndex = i + arc4random_uniform((uint32_t)remainingCount);
+        [options exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
 
     return [options copy];
 }
@@ -168,11 +176,11 @@ const NSUInteger CardToRememberInOneDay = 10;
 }
 
 - (NSUInteger)todayCountToRemember {
-    NSUInteger totalRemainCountToRemember = self.totalCountToRemember - self.currentCountRemembered;
-    NSUInteger todayCountToRememberInPlaned = totalRemainCountToRemember > CardToRememberInOneDay ? CardToRememberInOneDay : totalRemainCountToRemember;
-    NSUInteger todayRemembered = self.todayCountRemembered;
+    NSInteger totalRemainCountToRemember = self.totalCountToRemember - self.currentCountRemembered;
+    NSInteger todayCountToRememberInPlaned = totalRemainCountToRemember > CardToRememberInOneDay ? CardToRememberInOneDay : totalRemainCountToRemember;
+    NSInteger todayRemembered = self.todayCountRemembered;
 
-    return todayCountToRememberInPlaned - todayRemembered;
+    return MAX(todayCountToRememberInPlaned - todayRemembered, 0);
 }
 
 - (NSUInteger)todayCountRemembered {
@@ -220,18 +228,18 @@ const NSUInteger CardToRememberInOneDay = 10;
     NSData *savedCardsData = [defaults objectForKey:@"SavedCards"];
     NSError *error;
     NSDictionary<DogBreed *, MemoryCard *> *cards = [NSKeyedUnarchiver unarchiveObjectWithData:savedCardsData];
-    
+
     // OPT: use NSKeyedUnarchiver unarchivedObjectOfClasses:fromData:error: to avoid warning
     // but this method do not return data and throw error: The data couldn’t be read because it isn’t in the correct format.
     // NSDictionary<DogBreed *, MemoryCard *> *cards =
     //     [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:[NSDictionary class], [DogBreed class], [MemoryCard class], nil]
     //                                         fromData:savedCardsData
     //                                            error:&error];
-    
+
     if (error) {
         NSLog(@"MemoryCard Load Error: %@", error.localizedDescription);
     }
-    
+
     return cards;
 }
 
