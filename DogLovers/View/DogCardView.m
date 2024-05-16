@@ -121,9 +121,22 @@ static NSString *const DogChoiceReuseIdentifier = @"DogCardView";
     return tableView.frame.size.height / self.currentCard.options.count;
 }
 
-// TODO: Highlight feedback in select
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.delegate dogCardView:self didSelectedOption:self.currentCard.options[indexPath.row] atIndex:self.currentIndex withStatus:DogCardSelected];
+    
+    DogBreed *selectedOption = self.currentCard.options[indexPath.row];
+    BOOL isCorrectOption = [selectedOption isEqual:self.currentCard.correctOption];
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UIListContentConfiguration *content = cell.defaultContentConfiguration;
+    NSString *contentStr = [NSString stringWithFormat:@"%@ %@", selectedOption, isCorrectOption ? @"✅" : @"❌"];
+    content.text = contentStr;
+    cell.contentConfiguration = content;
+    cell.selected = YES;
+    [cell setNeedsDisplay];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.delegate dogCardView:self didSelectedOption:selectedOption atIndex:self.currentIndex withStatus:DogCardSelected];
+    });
 }
 
 - (IBAction)forget:(id)sender {

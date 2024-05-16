@@ -10,8 +10,6 @@
 
 @interface DogGroundController ()
 
-// TODO: Display Trophy
-
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *progressNumTitle;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
