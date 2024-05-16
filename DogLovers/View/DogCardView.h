@@ -28,6 +28,8 @@ typedef NS_ENUM(NSUInteger, DogCardSelectStatus) {
 
 @interface DogCardView : UIView
 
+@property (nonatomic, assign, readonly) NSUInteger currentIndex;
+
 - (void)reload;
 - (void)nextCard;
 

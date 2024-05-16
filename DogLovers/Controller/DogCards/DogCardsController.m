@@ -87,7 +87,7 @@
 #pragma mark - Memory Handle Logic
 
 - (void)reload {
-    [self.progessNaviItem setTitle:[NSString stringWithFormat:@"%lu/%lu", self.memory.todayCountRemembered, self.memory.todayCountToRemember]];
+    [self.progessNaviItem setTitle:[NSString stringWithFormat:@"%lu/%lu", self.cardView.currentIndex, self.cardDatas.count]];
     [self.cardView reload];
 }
 
