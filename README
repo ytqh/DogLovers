@@ -23,8 +23,8 @@ Use MVC structure to structe the application.
 
 there will be three main parts of this app, each quote represent a key module in the application.
 
-- `Remember` the `Dog`: shows them a picture of a dog and asks them which breed it is.
-- `Feedback`: gives them a warm sense of satisfaction when they get it right.
+- `Memory` the `Dog`: shows them a picture of a dog and asks them which breed it is.
+- `Game`: gives them a warm sense of satisfaction when they get it right.
 
 #### Controller
 
@@ -59,19 +59,17 @@ Prototype as bellow:
 - Role: save and maintain the memory prograss of all `Dog` and provide the `Dog` to remember based on the [forgetting curve theory](https://en.wikipedia.org/wiki/Forgetting_curve)
 - Key Funcationality:
   - Get current overall memory prograss
-  - Update and save memory results(correct/worng, day) on each dog.
-  - Provide suggestion dogs to remember based on the [forgetting curve theory](https://en.wikipedia.org/wiki/Forgetting_curve)
+  - Update and save memory results(correct/worng, updateTime by day) on each dog.
+  - Provide suggestion dogs to remember.
 
 ##### Game
 
 - Role: provide positive game status based on the `Remeber` prograss
 - Key Funcationality:
-  - Get game level (iron 0-33%, silver 34-66%, gold 67 - 100%)
   - Get game progress
 
 ## Future Enhancements
 
-// TODO: add future enhancement
-
 - add two different types of game: select breed by image and select the right image by breed.
 - add notification to notify the user to play.
+- use ebbinghaus memory curve to remember breed.
