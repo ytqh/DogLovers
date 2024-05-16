@@ -54,13 +54,19 @@
 }
 
 - (void)setupViews {
-    
+    [self.playButton setTitle:@"Great job!\nYou've finished today's game!" forState:UIControlStateDisabled];
 }
 
 - (void)reloadData {
     [self.progressView setProgress:self.progress];
     [self.progressNumTitle setText:[NSString stringWithFormat:@"%lu / %lu", self.memory.currentCountRemembered, self.memory.totalCountToRemember]];
-    [self.playButton setTitle:[NSString stringWithFormat:@"%lu Puppies Today!", self.memory.todayCountToRemember] forState:UIControlStateNormal];
+    
+    if (self.memory.todayCountToRemember == 0) {
+        self.playButton.enabled = NO;
+    } else {
+        self.playButton.enabled = YES;
+        [self.playButton setTitle:[NSString stringWithFormat:@"%lu Puppies Today!", self.memory.todayCountToRemember] forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - Progress Logic

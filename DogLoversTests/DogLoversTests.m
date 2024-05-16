@@ -17,16 +17,12 @@
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"SavedCards"];
-    [defaults removeObjectForKey:@"dogData"];
+    [[Memory sharedMemory] resetAllProgress];
 }
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"SavedCards"];
-    [defaults removeObjectForKey:@"dogData"];
+    [[Memory sharedMemory] resetAllProgress];
 }
 
 - (void)testDogDataFetchErrorNil {
@@ -39,6 +35,28 @@
     }];
 
     [self waitForExpectationsWithTimeout:5.0 handler:nil];
+}
+
+- (void)testMemoryCardAllSaveOnToday {
+    [self prefetchDogData];
+    
+    DogManager *dogManager = [DogManager sharedManager];
+    Memory *memory = [Memory sharedMemory];
+    [[Memory sharedMemory] resetAllProgress];
+
+    XCTAssertEqual(memory.totalCountToRemember, dogManager.allDogs.count);
+    XCTAssertEqual(memory.currentCountRemembered, 0);
+    XCTAssertEqual(memory.todayCountToRemember, 10);
+    XCTAssertEqual(memory.todayCountRemembered, 0);
+    
+    NSArray<MemoryCard *> *cards = [memory unfinishedCardsWithCount:10];
+    for (MemoryCard *card in cards) {
+        [memory updateMemoryWithCard:card statue:MemoryCardStatusCorrect];
+    }
+    
+    XCTAssertEqual(memory.currentCountRemembered, 10);
+    XCTAssertEqual(memory.todayCountToRemember, 0);
+    XCTAssertEqual(memory.todayCountRemembered, 10);
 }
 
 - (void)testMemoryCard {

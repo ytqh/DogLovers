@@ -44,6 +44,8 @@ typedef NS_ENUM(NSUInteger, MemoryCardStatus) {
 
 - (NSArray<MemoryCard *> *)unfinishedCardsWithCount:(NSUInteger)count;
 
+- (void)resetAllProgress;
+
 @end
 
 NS_ASSUME_NONNULL_END

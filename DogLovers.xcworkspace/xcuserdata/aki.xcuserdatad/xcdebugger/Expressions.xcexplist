@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "__38-[Memory updateMemoryWithCard:statue:]_block_invoke:Memory.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[DogCardView reload]:DogCardView.m">
+      </ContextState>
+      <ContextState
+         contextName = "__42-[Dog fetchRandomImageURLsWithCompletion:]_block_invoke:Dog.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[Memory todayCountToRemember]:Memory.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+            <PersistentString
+               value = "[[self savedCards] allValues] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@&quot;status == %d AND updatedDayTime == %@&quot;, 2, [self todayDate]]].firstObject">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[Memory loadFromUserDefaults]:Memory.m">
+      </ContextState>
+      <ContextState
+         contextName = "__30-[DogManager refreshDogCache:]_block_invoke:Dog.m">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

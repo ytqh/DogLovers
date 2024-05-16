@@ -125,7 +125,7 @@ const NSUInteger CardToRememberInOneDay = 10;
     // alse added random cards from other unsaved card new from DogManager if count not enough of savedCard
     NSMutableArray<MemoryCard *> *unfinishedCards = [NSMutableArray array];
     for (MemoryCard *card in self.savedCards.allValues) {
-        if (card.status == MemoryCardStatusWrong || card.status == MemoryCardStatusForget) {
+        if (card.status != MemoryCardStatusCorrect) {
             [unfinishedCards addObject:card];
         }
     }
@@ -210,7 +210,8 @@ const NSUInteger CardToRememberInOneDay = 10;
 
 - (void)setSavedCards:(NSDictionary<DogBreed *, MemoryCard *> *)savedCards {
     dispatch_sync(self.serialQueue, ^{
-        [self saveToUserDefaults:[savedCards copy]];
+        _savedCards = [savedCards copy];
+        [self saveToUserDefaults:_savedCards];
     });
 }
 
@@ -242,6 +243,10 @@ const NSUInteger CardToRememberInOneDay = 10;
         NSLog(@"MemoryCard Save Error: %@", error.localizedDescription);
     }
     [defaults setObject:savedCardsData forKey:@"SavedCards"];
+}
+
+- (void)resetAllProgress {
+    self.savedCards = @{};
 }
 
 @end
