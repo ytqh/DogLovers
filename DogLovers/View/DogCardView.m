@@ -85,9 +85,9 @@ static NSString *const DogChoiceReuseIdentifier = @"DogCardView";
     self.currentIndex += 1;
     if (self.currentCard.imageURL.length == 0) {
         __weak typeof(self) weakSelf = self;
-        [self.currentCard.dog fetchRandomImageURLsWithCompletion:^(NSError * _Nullable error) {
+        [self.currentCard.dog fetchRandomImageURLsWithCompletion:^(NSError *_Nullable error) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
-            
+
             dispatch_async(dispatch_get_main_queue(), ^{
                 [strongSelf reload];
             });
@@ -111,7 +111,7 @@ static NSString *const DogChoiceReuseIdentifier = @"DogCardView";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DogChoiceReuseIdentifier forIndexPath:indexPath];
 
     UIListContentConfiguration *content = cell.defaultContentConfiguration;
-    content.text = [self.currentCard.options[indexPath.row] description];
+    content.attributedText = [self cellAttrTextWithContext:[self.currentCard.options[indexPath.row] description]];
     cell.contentConfiguration = content;
 
     return cell;
@@ -122,20 +122,20 @@ static NSString *const DogChoiceReuseIdentifier = @"DogCardView";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     tableView.userInteractionEnabled = NO;
-    
+
     DogBreed *selectedOption = self.currentCard.options[indexPath.row];
     BOOL isCorrectOption = [selectedOption isEqual:self.currentCard.correctOption];
-    
+
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     UIListContentConfiguration *content = cell.defaultContentConfiguration;
     NSString *contentStr = [NSString stringWithFormat:@"%@ %@", selectedOption, isCorrectOption ? @"✅" : @"❌"];
-    content.text = contentStr;
+    content.attributedText = [self cellAttrTextWithContext:contentStr];
     cell.contentConfiguration = content;
     cell.selected = YES;
     [cell setNeedsDisplay];
-    
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.delegate dogCardView:self didSelectedOption:selectedOption atIndex:self.currentIndex withStatus:DogCardSelected];
         tableView.userInteractionEnabled = YES;
@@ -144,6 +144,16 @@ static NSString *const DogChoiceReuseIdentifier = @"DogCardView";
 
 - (IBAction)forget:(id)sender {
     [self.delegate dogCardView:self didSelectedOption:nil atIndex:self.currentIndex withStatus:DogCardForget];
+}
+
+- (NSAttributedString *)cellAttrTextWithContext:(NSString *)text {
+    // set attributed text with custom font
+    NSMutableAttributedString *attributedContent = [[NSMutableAttributedString alloc] initWithString:text];
+    [attributedContent addAttribute:NSFontAttributeName
+                              value:[UIFont fontWithName:@"chalkduster" size:20]
+                              range:NSMakeRange(0, text.length)];
+    
+    return attributedContent;
 }
 
 @end

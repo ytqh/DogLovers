@@ -54,6 +54,7 @@
 
 - (void)setupViews {
     [self.playButton setTitle:@"See you tommorrow!" forState:UIControlStateDisabled];
+//    [self.playButton.titleLabel setFont:[UIFont fontWithName:@"chalkduster" size:20]];
 }
 
 - (void)reloadData {
@@ -63,7 +64,7 @@
     if (self.memory.todayCountToRemember == 0) {
         self.playButton.enabled = NO;
         self.trophyImage.alpha = 1.0;
-        [self.gameText setText:@"Great!\nYou've learned 10 new puppies!"];
+        [self.gameText setText:[NSString stringWithFormat:@"Great!\nYou've learned %lu new puppies!", self.memory.todayCountRemembered]];
     } else {
         self.playButton.enabled = YES;
         self.trophyImage.alpha = 0.4;

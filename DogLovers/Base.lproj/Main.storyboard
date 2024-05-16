@@ -35,11 +35,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glL-Dz-Qw8">
-                                <rect key="frame" x="48" y="690.33333333333337" width="279" height="64.666666666666629"/>
+                                <rect key="frame" x="48" y="705" width="279" height="50"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="30"/>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <buttonConfiguration key="configuration" style="plain" title="30 Puppies">
-                                    <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="40"/>
-                                </buttonConfiguration>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="30 Puppies">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
                                 <connections>
                                     <segue destination="AJJ-vc-e1X" kind="show" id="nSw-I7-9v6"/>
                                 </connections>
