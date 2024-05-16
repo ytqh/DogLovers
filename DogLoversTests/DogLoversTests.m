@@ -56,6 +56,16 @@
     MemoryCard *card1 = cards.firstObject;
     MemoryCard *card2 = cards.lastObject;
     
+    XCTAssertEqual(card1.options.count, 4);
+
+    NSUInteger correctOption = 0;
+    for (DogBreed *option in card1.options) {
+        if ([option isEqual:card1.correctOption]) {
+            correctOption += 1;
+        }
+    }
+    XCTAssertEqual(correctOption, 1);
+    
     [memory updateMemoryWithCard:card1 statue:MemoryCardStatusCorrect];
     [memory updateMemoryWithCard:card2 statue:MemoryCardStatusWrong];
 

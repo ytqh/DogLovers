@@ -38,6 +38,8 @@
         }
         [options addObject:option];
     }
+    
+    [options addObject:correctOption];
 
     return [options copy];
 }

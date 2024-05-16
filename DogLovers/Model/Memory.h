@@ -30,7 +30,7 @@ typedef NS_ENUM(NSUInteger, MemoryCardStatus) {
 
 @interface Memory : NSObject
 
-// TODO: 2024-05-11 艾宾浩斯记忆曲线的实现代码
+// OPT: Implementation code of Ebbinghaus memory curve
 
 @property (nonatomic, assign, readonly) NSUInteger totalCountToRemember;
 @property (nonatomic, assign, readonly) NSUInteger currentCountRemembered;
@@ -40,15 +40,9 @@ typedef NS_ENUM(NSUInteger, MemoryCardStatus) {
 
 + (instancetype)sharedMemory;
 
-// update memory status with card and status
-// return err if not success
 - (void)updateMemoryWithCard:(MemoryCard *)card statue:(MemoryCardStatus)status;
 
-// return random cards with count
 - (NSArray<MemoryCard *> *)unfinishedCardsWithCount:(NSUInteger)count;
-
-// OPT: configure finshed date to memory; currently set to next 30 days after open this application
-//- (void)configureFinishedDate:(NSDate *)date;
 
 @end
 

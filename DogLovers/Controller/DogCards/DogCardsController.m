@@ -8,6 +8,7 @@
 #import "DogCardsController.h"
 #import "DogCardView.h"
 #import "Memory.h"
+#import <SDWebImage/SDWebImage.h>
 
 @interface DogCardsController () <DogCardViewDelegate, DogCardViewDataSource>
 
@@ -29,6 +30,8 @@
 
     self.cardView.delegate = self;
     self.cardView.dataSource = self;
+    
+    [self preLoadCardData];
 
     [self reload];
 }
@@ -90,6 +93,36 @@
 
 - (Memory *)memory {
     return [Memory sharedMemory];
+}
+
+#pragma mark - Data Preload
+
+- (void)preLoadCardData {
+    for (MemoryCard *card in self.cards) {
+        [card.dog fetchRandomImageURLsWithCompletion:nil];
+    }
+
+    MemoryCard *curCard = self.cards.firstObject;
+
+    NSMutableArray<NSURL *> *urls = [NSMutableArray array];
+    NSArray<NSString *> *urlStrs = [self.cards valueForKey:@"imageURL"];
+
+    for (NSString *url in urlStrs) {
+        if (![url isKindOfClass:NSNull.class]) {
+            [urls addObject:[NSURL URLWithString:url]];
+        }
+    }
+
+    [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:urls];
+
+    __weak typeof(self) weakSelf = self;
+    [curCard.dog fetchRandomImageURLsWithCompletion:^(NSError *_Nullable error) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [strongSelf reload];
+        });
+    }];
 }
 
 @end

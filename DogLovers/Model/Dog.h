@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) DogBreed *breed;
 @property (nonatomic, copy) NSArray<NSString *> *imageURLs;
 
-- (void)fetchRandomImageURLs;
+- (void)fetchRandomImageURLsWithCompletion:(nullable void (^)(NSError *_Nullable error))completion;
 
 @end
 

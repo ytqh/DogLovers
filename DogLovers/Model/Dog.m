@@ -100,22 +100,25 @@
     NSURL *url = [NSURL URLWithString:urlStr];
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url
                                                              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (error) {
+        if (error && completion) {
             // Handle error
             completion(error);
             return;
         }
         NSError *jsonError;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-        if (jsonError) {
+        if (jsonError && completion) {
             // Handle JSON parsing error
             completion(jsonError);
             return;
         }
-        NSString *imageURLString = json[@"message"];
-        // Use the imageURLString as needed
-        self.imageURLs = @[ imageURLString ];
-        completion(nil);
+        
+        NSArray<NSString *> *images = json[@"message"];
+        self.imageURLs = images;
+        
+        if (completion) {
+            completion(nil);
+        }
     }];
     [task resume];
 }

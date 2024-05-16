@@ -54,12 +54,13 @@
 }
 
 - (void)setupViews {
+    
 }
 
 - (void)reloadData {
     [self.progressView setProgress:self.progress];
     [self.progressNumTitle setText:[NSString stringWithFormat:@"%lu / %lu", self.memory.currentCountRemembered, self.memory.totalCountToRemember]];
-    [self.playButton setTitle:[NSString stringWithFormat:@"%lu Puppies Today!", self.memory.currentCountRemembered] forState:UIControlStateNormal];
+    [self.playButton setTitle:[NSString stringWithFormat:@"%lu Puppies Today!", self.memory.todayCountToRemember] forState:UIControlStateNormal];
 }
 
 #pragma mark - Progress Logic
