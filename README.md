@@ -56,7 +56,7 @@ Prototype as bellow:
 
 ##### Memory
 
-- Role: save and maintain the memory prograss of all `Dog` and provide the `Dog` to remember based on the [forgetting curve theory](https://en.wikipedia.org/wiki/Forgetting_curve)
+- Role: save and maintain the memory prograss of all `Dog` and provide the `Dog` to remember simply based on the one-time click results
 - Key Funcationality:
   - Get current overall memory prograss
   - Update and save memory results(correct/worng, updateTime by day) on each dog.
@@ -72,4 +72,4 @@ Prototype as bellow:
 
 - add two different types of game: select breed by image and select the right image by breed.
 - add notification to notify the user to play.
-- use ebbinghaus memory curve to remember breed.
+- use ebbinghaus memory curve to remember breed, [forgetting curve theory](https://en.wikipedia.org/wiki/Forgetting_curve)
